@@ -5,7 +5,7 @@
 <tiles-definitions>
  <definition name="home" template="/WEB-INF/tiles/home-template.jsp">
  	<put-attribute name="head" value="/WEB-INF/module/module.jsp" />
- 	<put-attribute name="head" value="/WEB-INF/nav/nav.jsp" />
+ 	<put-attribute name="nav" value="/WEB-INF/nav/nav.jsp" />
   </definition>
   <definition name="home/*" extends="home">
   	<put-attribute name="body" value="/WEB-INF/views/home/{1}.jsp" />

@@ -4,12 +4,16 @@
 <%@ page session="false" %>
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 <tiles:insertAttribute name="head"/>
 
 </head>
 <body>
 <tiles:insertAttribute name="nav"/>
+
+
 <tiles:insertAttribute name="body"/>
 
 </body>
