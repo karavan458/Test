@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// ¿©±â¼­´Â FILEÀÌ¶ó´Â URI¸¦ Ã³¸®ÇÔ
+// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ FILEï¿½Ì¶ï¿½ï¿½ URIï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½
 @Controller
 @RequestMapping(value = "/file")
 public class FileController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
-// FILE URIÀÇ UPLOAD uri¸¦ Ã³¸®ÇÔ
+// FILE URIï¿½ï¿½ UPLOAD uriï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) throws Exception {
 		return "home/file-upload";
@@ -41,7 +41,7 @@ public class FileController {
 		String name = request.getHeader("file-name");
 		String length = request.getHeader("file-size");
 			
-		File file = new File("C:/Users/wjdgn/OneDrive/¹ÙÅÁ È­¸é/data/"+name);
+		File file = new File("/Users/nasty/Desktop/data/"+name);
 		
 		if(file.exists()) {
 			response.setStatus(403);
@@ -79,7 +79,7 @@ public class FileController {
 
 	@RequestMapping(value = "/download/test", method = RequestMethod.GET)
 	public void download1(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		File file = new File("C:\\Users\\wjdgn\\OneDrive\\¹ÙÅÁ È­¸é\\data\\1.zip");
+		File file = new File("C:\\Users\\wjdgn\\OneDrive\\ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½\\data\\1.zip");
 		
 		downloadProc(response, file);
 	}	
