@@ -11,7 +11,7 @@ public class MemberServiceImp implements MemberService {
     MemberDAO memberDao;
 
     @Override
-    public String getName(String id) {
-        return memberDao.getName(id);
+    public String getName(String id, String pw) {
+        return memberDao.getName(id, pw);
     }
 }

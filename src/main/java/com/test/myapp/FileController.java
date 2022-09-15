@@ -41,7 +41,7 @@ public class FileController {
 		String name = request.getHeader("file-name");
 		String length = request.getHeader("file-size");
 			
-		File file = new File("/Users/nasty/Desktop/data/"+name);
+		File file = new File("C:/Users/wjdgn/OneDrive/���� ȭ��/data/"+name);
 		
 		if(file.exists()) {
 			response.setStatus(403);

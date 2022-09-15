@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MemberDAO {
-    public String getName(@Param("id")String id);
+    public String getName(@Param("id")String id, @Param("pw")String pw);
 }

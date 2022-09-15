@@ -1,5 +1,6 @@
 package com.test.myapp;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -28,6 +29,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+
 	@Autowired
 	MemberService memberService;
 
@@ -37,26 +39,34 @@ public class HomeController {
 		return "home/home";
 	}
 
-	@RequestMapping(value="/")
-	public ModelAndView main(ModelAndView mv) throws Exception{
-		mv.setViewName("/home/file-upload");
-		System.out.println(memberService.getName("user1"));
-		return mv;
-	}
-
-
-	@ResponseBody
+    @ResponseBody
 	@RequestMapping(value ="/login", method = RequestMethod.POST)
-	public void login(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		 boolean login = true;
-		if(login) {
+	public void login(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		String id = request.getParameter("exampleInputEmail");
+		String pw = request.getParameter("exampleInputPassword");
+
+		String name = memberService.getName(id, pw);
+		System.out.println(name);
+
+
+		if (name != null && name != "") {
+			PrintWriter out = response.getWriter();
 			session.setAttribute("id", "id");
-		}else {
+			out.println("<script>alert('환영합니다.'); </script>");
+			out.println("<script>self.location ='/file/'; </script>");
+			out.flush();
+		} else {
+			PrintWriter out = response.getWriter();
 			response.setStatus(401);
+			out.println("<script>alert('계정을 다시 확인해주십시오.'); </script>");
+			out.println("<script>self.location ='/'; </script>");
+			out.flush();
 		}
-		
 	}
-	
+
 	@RequestMapping(value ="/error", method = RequestMethod.GET)
 	public String error(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		response.setStatus(404);
