@@ -1,5 +1,6 @@
 package com.test.myapp.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,22 @@ public class MemberServiceImp implements MemberService {
 
     @Override
     public String getName(String id, String pw) {
-        return memberDao.getName(id, pw);
+        String res = null;
+        try {
+            res = memberDao.getName(id, pw);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public void setUser(@Param("id")String id, @Param("pw")String pw,
+                          @Param("gender")String gender, @Param("name")String name, @Param("authority")String authority){
+        String res = null;
+        try {
+            memberDao.setUser(id, pw, gender, name, authority);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

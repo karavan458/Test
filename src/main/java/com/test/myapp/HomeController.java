@@ -48,6 +48,8 @@ public class HomeController {
 		String id = request.getParameter("exampleInputEmail");
 		String pw = request.getParameter("exampleInputPassword");
 
+		System.out.println(id);
+		System.out.println(pw);
 		String name = memberService.getName(id, pw);
 		System.out.println(name);
 
@@ -65,6 +67,38 @@ public class HomeController {
 			out.println("<script>self.location ='/'; </script>");
 			out.flush();
 		}
+	}
+
+
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return "home/join";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public void join(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String userID = null;
+		if(session.getAttribute("userID") != null){
+			userID = (String)session.getAttribute("userID");
+		}
+
+		String id = request.getParameter("userId");
+		String pw = request.getParameter("userPw");
+		String gender = request.getParameter("userGender");
+		String name = request.getParameter("userName");
+		String authority = request.getParameter("userAuthority");
+
+		System.out.println(id);
+		System.out.println(pw);
+		System.out.println(gender);
+		System.out.println(name);
+		System.out.println(authority);
+
+		memberService.setUser(id, pw, gender, name, authority);
+
+
+ 
 	}
 
 	@RequestMapping(value ="/error", method = RequestMethod.GET)

@@ -6,4 +6,9 @@
     <select id="getName" resultType="String">
         select name from member where id = #{id} and pw = #{pw}
     </select>
+
+    <insert id ="setUser">
+        insert into member (id, pw, gender, name, authority)
+            values ( #{id},#{pw},#{gender},#{name},#{authority})
+    </insert>
 </mapper>
